@@ -1,6 +1,6 @@
 import requests						#To POST the spams		
 import random 						#To randomise the spams
-from bs4 import BeautifulSoup		#For scraping the captch
+from bs4 import BeautifulSoup				#For scraping the captch
 import ctypes						#For minimising the window
 
 
@@ -9,22 +9,24 @@ ctypes.windll.user32.ShowWindow( ctypes.windll.kernel32.GetConsoleWindow(), 6 )
 
 
 
-#Both URL are slightly different
-requestURL = 'https://docs.google.com/forms/d/e/1FAIpQLScfq3qfsz6TbLxPlZwhvtiLQx1e8e6-NGPazAj0WsrZRs_eTA/formResponse' #Target form URL
-bsURL = 'https://docs.google.com/forms/d/e/1FAIpQLScfq3qfsz6TbLxPlZwhvtiLQx1e8e6-NGPazAj0WsrZRs_eTA/viewform' #Target form to get captcha code
+#Target form URL
+requestURL = 'https://docs.google.com/forms/d/e/1FAIpQLScfq3qfsz6TbLxPlZwhvtiLQx1e8e6-NGPazAj0WsrZRs_eTA/formResponse' 
+
+#Target url to get captcha, comment out if there's no captcha in form
+bsURL = 'https://docs.google.com/forms/d/e/1FAIpQLScfq3qfsz6TbLxPlZwhvtiLQx1e8e6-NGPazAj0WsrZRs_eTA/viewform' 
 
 
 
-# Open the file that contains the words to use for random generated spam and randomise them
+# Open the file that contains the words to use for random generated spam and randomise them, uncomment if you wanna use it
 
-def randomise():
-	file = open(r'C:\Users\kaush\Desktop\confession.txt', 'r')
-	splitted = file.read().split(' ')
-	random.shuffle(splitted)
-	confess = ''
-	for i in range(100):
-		confess += ' '+ splitted[i]
-	return confess
+#def randomise():
+#	file = open(r'C:\Users\kaush\Desktop\confession.txt', 'r') #file location
+#	splitted = file.read().split(' ')
+#	random.shuffle(splitted)
+#	confess = ''
+#	for i in range(100):
+#		confess += ' '+ splitted[i]
+#	return confess
 
 
 #Function to get Captcha
@@ -41,7 +43,7 @@ formFilled = 0																#To count number of spam
 
 
 while True:
-	payload = {'entry.1696974207' : randomise(),							#Change the entry.x to match the form you are spamming
+	payload = {'entry.1696974207' : 'This is a test confession',							#Change the entry.x to match the form you are spamming
 			   'entry.1624638507' : 'Morning',
 			   'entry.1428141631' : 'Male',
 			   'entry.508523218' : '2075/2076',
